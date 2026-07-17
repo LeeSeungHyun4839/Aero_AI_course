@@ -1,9 +1,9 @@
 import React from 'react';
 import { cn } from '../lib/utils';
 
-export function Card({ className, children }: { className?: string; children: React.ReactNode }) {
+export function Card({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn("bg-slate-900/60 border border-slate-700/50 backdrop-blur-md rounded-2xl overflow-hidden", className)}>
+    <div className={cn("bg-slate-900/60 border border-slate-700/50 backdrop-blur-md rounded-2xl overflow-hidden", className)} {...props}>
       {children}
     </div>
   );

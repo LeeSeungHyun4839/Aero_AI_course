@@ -52,19 +52,48 @@ function mapToMetricData(data: any[]): MetricData[] {
     const fpKey = findKey(row, ['fp']);
     const fnKey = findKey(row, ['fn']);
     const idKey = findKey(row, ['test_id', 'id']);
+    const caseIdKey = findKey(row, ['case_id']);
     const conditionKey = findKey(row, ['time_of_day', 'condition']);
     const distanceKey = findKey(row, ['range_group', 'distance']);
     const statusKey = findKey(row, ['status']);
     
+    // Failure case columns
+    const imageFileKey = findKey(row, ['image_file', 'image']);
+    const errorTypeKey = findKey(row, ['error_type']);
+    const severityKey = findKey(row, ['severity']);
+    const gtClassKey = findKey(row, ['gt_class', 'label']);
+    const predClassKey = findKey(row, ['pred_class', 'prediction']);
+    const confidenceKey = findKey(row, ['confidence']);
+    const iouKey = findKey(row, ['iou']);
+    const conditionSummaryKey = findKey(row, ['condition_summary']);
+    const observationKey = findKey(row, ['observation']);
+    const suspectedCauseKey = findKey(row, ['suspected_cause']);
+    const reviewStatusKey = findKey(row, ['review_status']);
+    const detectionIdKey = findKey(row, ['detection_id']);
+    
     return {
       ...row,
       id: idKey ? String(row[idKey]) : `req-${index}`,
+      case_id: caseIdKey ? String(row[caseIdKey]) : undefined,
       tp: tpKey ? parseNumber(row[tpKey]) : undefined,
       fp: fpKey ? parseNumber(row[fpKey]) : undefined,
       fn: fnKey ? parseNumber(row[fnKey]) : undefined,
       condition: conditionKey ? String(row[conditionKey]) : 'Unknown',
       distance: distanceKey ? String(row[distanceKey]) : 'Unknown',
       status: statusKey ? String(row[statusKey]) : undefined,
+      
+      image_file: imageFileKey ? String(row[imageFileKey]) : undefined,
+      error_type: errorTypeKey ? String(row[errorTypeKey]) : undefined,
+      severity: severityKey ? String(row[severityKey]) : undefined,
+      gt_class: gtClassKey ? String(row[gtClassKey]) : undefined,
+      pred_class: predClassKey ? String(row[predClassKey]) : undefined,
+      confidence: confidenceKey ? parseNumber(row[confidenceKey]) : undefined,
+      iou: iouKey ? parseNumber(row[iouKey]) : undefined,
+      condition_summary: conditionSummaryKey ? String(row[conditionSummaryKey]) : undefined,
+      observation: observationKey ? String(row[observationKey]) : undefined,
+      suspected_cause: suspectedCauseKey ? String(row[suspectedCauseKey]) : undefined,
+      review_status: reviewStatusKey ? String(row[reviewStatusKey]) : undefined,
+      detection_id: detectionIdKey ? String(row[detectionIdKey]) : undefined,
     };
   });
 }
