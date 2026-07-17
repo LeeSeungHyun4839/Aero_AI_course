@@ -1,0 +1,6 @@
+{
+  "name": "CV Test Analysis Assistant",
+  "description": "An AI assistant to automate computer vision test analysis, failure case management, and report generation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
